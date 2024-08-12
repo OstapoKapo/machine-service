@@ -8,7 +8,7 @@ export default function Home() {
  useEffect( ()=>{
  const getUser = async () => {
     try {
-      await axios.get('https://machine-service.vercel.app/api/user', {})
+      await axios.get('https://machine-service-8yt4p8zc9-ostapokapos-projects.vercel.app/api/user', {})
       .then((response) => {
           if(response.status === 200 ){
             const res = response;
