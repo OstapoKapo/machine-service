@@ -10,7 +10,7 @@ export default function Home() {
         return 'http://localhost:3000/api'; // Local development
     } else {
         // Use the VERCEL_URL environment variable for the production environment
-        return `https://${process.env.VERCEL_URL}/api`;
+        return `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api`;
     }
 };
 
