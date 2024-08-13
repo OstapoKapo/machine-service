@@ -5,13 +5,22 @@ import axios from 'axios';
 
 export default function Home() {
 
+  const getApiUrl = () => {
+    if (process.env.NODE_ENV === 'development') {
+        return 'http://localhost:3000/api'; // Local development
+    } else {
+        // Use the VERCEL_URL environment variable for the production environment
+        return `https://${process.env.VERCEL_URL}/api`;
+    }
+};
+
  useEffect( ()=>{
  const getUser = async () => {
+  const URL = getApiUrl()
     try {
-      await axios.get('https://machine-service-8yt4p8zc9-ostapokapos-projects.vercel.app/api/user', {})
+      await axios.get(`${URL}/user`, {})
       .then((response) => {
           if(response.status === 200 ){
-            const res = response;
            console.log('dasd') 
           }else{
             alert('somethin went wrong');
