@@ -3,7 +3,6 @@ import connect from '../../../utils/db'
 import User from '../../../models/User'
 
 export const maxDuration = 5;
-export const dynamic = 'focre-dynamic';
 
 export const GET = async (req, res) => {
 
