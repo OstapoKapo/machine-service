@@ -18,12 +18,10 @@ export default function Home() {
   return (
     <div className="myContainer">
       <div className='myContainer__left'>
-        <div>
           <Logo />
           <div className="btnGroup">
             <div className="btn btn_login">Log In</div>
           <div className="btn btn_register">Sign In</div>
-          </div>
         </div>
       </div>
       <div className='myContainer__right'>
