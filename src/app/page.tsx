@@ -1,7 +1,6 @@
 'use client'
 import { useEffect } from 'react';
 import style from  './page.module.scss';
-import axios from 'axios';
 
 export default function Home() {
 
