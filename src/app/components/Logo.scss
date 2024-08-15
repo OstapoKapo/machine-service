@@ -1,0 +1,18 @@
+@import '../scss/mixins.scss';
+.logo{
+    height: min-content;
+    width: min-content;
+    display: flex;
+    align-items: center;
+    &__text{
+        @include text(#5DB75E, 40px, 600);
+        margin-left: 10px;
+    }
+    margin-bottom: 50px;
+    @include _480 {
+        &__text{
+            @include text(#5DB75E, 25px, 600);
+            margin-left: 10px;
+        }
+    }    
+}

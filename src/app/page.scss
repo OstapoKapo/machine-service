@@ -1,0 +1,53 @@
+@import './scss/mixins.scss';
+
+.myContainer{
+    @include container();
+    flex-direction: row;
+    padding: 0 30px;
+    &__left,&__right{
+        height: 100%;
+        width: 50%;
+        @include center();
+        flex-direction: column;
+    }
+    @include _768 {
+        &__right{
+            display: none;
+        }
+        &__left{
+            width: 100%;
+        }
+     }    
+}
+.btnGroup{
+    min-width: 150px;
+    height: 55px;
+    display: flex;
+}
+.btn{
+    width: 180px;
+    height: 100%;
+    margin: 0 5px;
+    @include center();
+    @include text(#fff, 20px, 500);
+    border: none;
+    border-radius: 10px;
+    background-color: #5DB75E;
+    &_login{
+        background-color: #5DB75E;
+        color: #fff;
+    }
+    &_register{
+        background-color: #FFB400;
+    }
+    @include _480 {
+       width: 110px;
+       height: 35px;
+    }    
+}
+.img{
+    width: 600px;
+    height: 500px;
+    background-image: url(../../public/icon/entryPageImg.png);
+    background-size: cover;
+}

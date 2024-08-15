@@ -1,34 +1,34 @@
 'use client'
+import './page.scss';
+import { serverUrlStore } from '../store/serverUrl';
 import { useEffect } from 'react';
-import style from  './page.module.scss';
+import Logo from './components/Logo';
 
 export default function Home() {
 
- useEffect( ()=>{
- const getUser = async () => {
-    try {
-      await axios.post(`https://machine-service-server.onrender.com/api/user`, {})
-      .then((response) => {
-          if(response.status === 200 ){
-           console.log(response.data)
-          }else{
-            alert('somethin went wrong');
-          }
-      })
-      .catch((error) => {
-          console.error('Error:', error);
-      });
-  }
-  catch(error) {
-      console.log(error);
-  }
-  }
-  getUser()
+ const {setServerUrl} = serverUrlStore();
+
+ useEffect(()=>{
+  const handleToSetServerUrl = () => {
+    setServerUrl()
+  };
+  handleToSetServerUrl();
  },[])
 
   return (
-    <div className={style.container}>
-      dsdas
+    <div className="myContainer">
+      <div className='myContainer__left'>
+        <div>
+          <Logo />
+          <div className="btnGroup">
+            <div className="btn btn_login">Log In</div>
+          <div className="btn btn_register">Sign In</div>
+          </div>
+        </div>
+      </div>
+      <div className='myContainer__right'>
+        <div className='img'></div>
+      </div>
     </div>
   );
 }
