@@ -19,10 +19,6 @@ const Login = () => {
     (e.target as HTMLFormElement).reset();
   }
 
-  useEffect(()=>{
-    
-  }, [])
-
   return (
     <div className='myContainer'>
       <p className='header'>Log In</p>
