@@ -1,29 +1,23 @@
 'use client'
 import './page.scss';
-import { serverUrlStore } from '../store/serverUrl';
-import { useEffect } from 'react';
-import Logo from './components/Logo';
+import Logo from './components/Logo/Logo';
+import Link from 'next/link';
 
 export default function Home() {
-
- const {setServerUrl} = serverUrlStore();
-
- useEffect(()=>{
-  const handleToSetServerUrl = () => {
-    setServerUrl()
-  };
-  handleToSetServerUrl();
- },[])
 
   return (
     <div className="myContainer">
       <div className='myContainer__left'>
-        <div className='w-min h-full flex flex-col items-start justify-center'>
-        <Logo />
+        <div className='min-w-[300px] h-full flex flex-col items-start justify-center'>
+          <Logo />
           <div className="btnGroup">
-            <div className="btn btn_login">Log In</div>
-          <div className="btn btn_register">Sign In</div>
-        </div>
+            <Link href="/login">
+              <div className="btn btn_login">Log In</div>
+            </Link>
+            <Link href="/register">
+              <div className="btn btn_register">Sign In</div>
+            </Link>
+          </div>
         </div>
       </div>
       <div className='myContainer__right'>

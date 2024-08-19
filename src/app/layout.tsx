@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
+import AuthProvider from "./components/AuthProvider/AuthProvider";
 import "./globals.scss";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
@@ -17,7 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={montserrat.className}>
-        <div className="my-container">{children}</div>
+        <AuthProvider>
+          <div className="my-container">{children}</div>
+        </AuthProvider>
       </body>
     </html>
   );

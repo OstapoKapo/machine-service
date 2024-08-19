@@ -10,7 +10,7 @@
         @include center();
         flex-direction: column;
     }
-    @include _768 {
+    @include _979 {
         &__right{
             display: none;
         }
