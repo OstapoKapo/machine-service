@@ -12,6 +12,31 @@ const handler =  NextAuth({
       clientId: process.env.CLIENTID, 
       clientSecret: process.env.CLIENTSECRET,
     }),
+    CredentialsProvider ({
+        id: 'credentials',
+        name: 'Credentials',
+        async authorize(credentials){
+          await connect();
+          try{
+            const user = await User.findOne({email: credentials.email});
+            if(user){
+              const isPasswordCorrect = await bcrypt.compare(
+                credentials.password,
+                user.password
+              )
+              if(isPasswordCorrect){
+                 return user
+              }else{
+                throw new Error('wrong passwrod')
+              }
+            }else{
+              throw new Error('User not found')
+            }
+          }catch(err){
+            console.log(err)
+          }
+        }
+      }), 
   ],
   secret:  process.env.secret,
   pages: {

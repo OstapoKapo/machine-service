@@ -4,12 +4,8 @@ import './register.scss';
 import axios from 'axios';
 import { serverUrlStore } from '../../store/serverUrl';
 import { useRouter } from 'next/navigation';
+import { fullUser } from '../../types/index';
 
-interface user {
-  name: string,
-  email: string,
-  password: string
-}
 
 const Register = () => {
    
@@ -31,10 +27,12 @@ const Register = () => {
     const name = (form.elements.namedItem('nameInp') as HTMLInputElement).value.toLowerCase();
     const email = (form.elements.namedItem('emailInp') as HTMLInputElement).value.toLowerCase();
     const password = (form.elements.namedItem('passwordInp') as HTMLInputElement).value.toLowerCase();
-    const user: user = {
+    const user: fullUser = {
       name: name,
       email: email,
-      password: password
+      password: password,
+      cars: [],
+      profileImg: '' 
     };
 
     (e.target as HTMLFormElement).reset();
@@ -45,12 +43,15 @@ const Register = () => {
     }
   }
 
-  const createUser = async (user:user) => {
+  const createUser = async (user: fullUser) => {
     await axios.post(`${serverUrl}/signIn`, {user})
     .then((response) => {
     if(response.status === 200){
-      console.log(response.data)
       router.push('/login');
+    }else if(response.status === 201){
+      alert('You have empty inputs');
+    }else if(response.status === 202 ){
+      alert('You have account with this email')
     }
     })
   }

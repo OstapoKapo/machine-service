@@ -1,9 +1,25 @@
 'use client'
+import React, {useEffect} from 'react';
+import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 import './page.scss';
 import Logo from './components/Logo/Logo';
 import Link from 'next/link';
 
 export default function Home() {
+
+  const session = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (session.status === 'authenticated') {
+      router.push('/main');
+    }
+  }, [session.status, router]);
+
+  if (session.status === 'loading') {
+    return <p>Loading... </p>;
+  }
 
   return (
     <div className="myContainer">
