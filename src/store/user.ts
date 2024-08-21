@@ -18,8 +18,8 @@ export const userStore = create<State & Actions>()(
         password: '',
         profileImg: '',
         cars: [],
-        __id: '',
-        _v: 0
+        _id: '',
+        __v: 0
       },
       updateUser: (newUser) => set(((state) => ({
         user: {...newUser}

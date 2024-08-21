@@ -47,7 +47,7 @@ const Main = () => {
   }
 
   return (
-    <div onClick={()=> {signOut()}}>{user.name} {user.email}</div>
+    <div onClick={()=> {signOut()}}>{user.name} {user.email} {user._id}</div>
   )
 }
 
