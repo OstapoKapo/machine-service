@@ -6,7 +6,13 @@ import { serverUrlStore } from '../../store/serverUrl';
 import { useRouter } from 'next/navigation';
 import { fullUser } from '../../types/index';
 
-
+type RegUser = {
+  name: string,
+  email: string,
+  password: string,
+  profileImg: string,
+  cars: Array<any>
+}
 const Register = () => {
    
   const {serverUrl, setServerUrl} = serverUrlStore();
@@ -27,7 +33,7 @@ const Register = () => {
     const name = (form.elements.namedItem('nameInp') as HTMLInputElement).value.toLowerCase();
     const email = (form.elements.namedItem('emailInp') as HTMLInputElement).value.toLowerCase();
     const password = (form.elements.namedItem('passwordInp') as HTMLInputElement).value.toLowerCase();
-    const user: fullUser = {
+    const user: RegUser = {
       name: name,
       email: email,
       password: password,
@@ -43,7 +49,7 @@ const Register = () => {
     }
   }
 
-  const createUser = async (user: fullUser) => {
+  const createUser = async (user: RegUser) => {
     await axios.post(`${serverUrl}/signIn`, {user})
     .then((response) => {
     if(response.status === 200){
