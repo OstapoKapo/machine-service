@@ -5,8 +5,10 @@ import Image from 'next/image';
 const Logo = () => {
   return (
     <div className='logo'>
-        <Image src='/icon/logo.png' width={80} height={80} alt='machine_service'></Image>
-        <p className='logo__text'>Machine_Service</p>
+        <div className='logo__img'>
+          <img src="/icon/logo.png" alt="machineService" />
+        </div>
+        <p className='logo__text'>MachineService</p>
     </div>
   )
 }

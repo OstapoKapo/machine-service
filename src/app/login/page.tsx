@@ -63,16 +63,16 @@ const Login = () => {
   }
   
   return (
-    <div className='myContainer'>
-      <p className='header'>Log In</p>
-      <form className='form' onSubmit={handleSubmit}>
-        <input className='input' name='emailInp' type="email" placeholder='Email' />
-        <input className='input' name='passwordInp' type="password" placeholder='Password' />
-        <button className='btn' >Log In</button>
+    <div className='login'>
+      <p className='login__tittle'>Log In</p>
+      <form className='login__form' onSubmit={handleSubmit}>
+        <input className='login__input' name='emailInp' type="email" placeholder='Email' />
+        <input className='login__input' name='passwordInp' type="password" placeholder='Password' />
+        <button className='login__btn' >Log In</button>
       </form>
-      <div className='icon' onClick={() => signIn ("google")}></div>
+      <div className='login__icon' onClick={() => signIn ("google")}></div>
       {/* <div className='icon' onClick={() => signOut()}></div> */}
-      <p className='iconText'>login by google account</p>
+      <p className='login__iconText'>login by google account</p>
     </div>
   )
 }

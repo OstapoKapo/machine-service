@@ -63,13 +63,13 @@ const Register = () => {
   }
 
   return (
-    <div className='myContainer'>
-        <p className='header'>Sign In</p>
-        <form className='form' onSubmit={handleSubmit}>
-          <input className='input' name='nameInp' type="text" placeholder='NickName' />
-          <input className='input' name='emailInp' type="email" placeholder='Email' />
-          <input className='input' name='passwordInp' type="password" placeholder='Password' />
-          <button className='btn'>Sign In</button>
+    <div className='register'>
+        <p className='register__tittle'>Sign In</p>
+        <form className='register__form' onSubmit={handleSubmit}>
+          <input className='register__input' name='nameInp' type="text" placeholder='NickName' />
+          <input className='register__input' name='emailInp' type="email" placeholder='Email' />
+          <input className='register__input' name='passwordInp' type="password" placeholder='Password' />
+          <button className='register__btn'>Sign In</button>
         </form>
     </div>
   )

@@ -22,22 +22,22 @@ export default function Home() {
   }
 
   return (
-    <div className="myContainer">
-      <div className='myContainer__left'>
+    <div className="start">
+      <div className='start__left'>
         <div className='min-w-[300px] h-full flex flex-col items-start justify-center'>
           <Logo />
-          <div className="btnGroup">
+          <div className="start__btnGroup">
             <Link href="/login">
-              <div className="btn btn_login">Log In</div>
+              <div className="start__btn start__btn_login">Log In</div>
             </Link>
             <Link href="/register">
-              <div className="btn btn_register">Sign In</div>
+              <div className="start__btn start__btn_register">Sign In</div>
             </Link>
           </div>
         </div>
       </div>
-      <div className='myContainer__right'>
-        <div className='img'></div>
+      <div className='start__right'>
+        <div className='start__img'></div>
       </div>
     </div>
   );

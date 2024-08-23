@@ -1,0 +1,58 @@
+@import './../../scss/mixins.scss';
+.header{
+    width: 100%;
+    height: min-contents;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &__block{
+        height: 100%;
+        width: min-content;
+        display: flex;
+        align-items: center;
+    }
+    &__userImg{
+        width: 70px;
+        height: 70px;
+        background-color: #FFB400;
+        border-radius: 100%;
+        @include center();
+        margin: 0 15px;
+        @include text(#fff, 20px, 500);
+        & img{
+            width: 100%;
+            height: 100%;
+            border-radius: 50px;
+        }
+    }
+    &__btn{
+        width: 150px;
+        height: 50px;
+        border-radius: 8px;
+        @include  center();
+        background-color: #5DB75E;
+        @include text(#fff, 20px, 500);
+    }
+    @include _768 {
+        &__btn{
+           width: 100px;
+           @include text(#fff, 15px, 500);
+        }
+        &__userImg{
+            width: 50px;
+            height: 50px;
+            @include text(#fff, 15px, 500);
+            margin-right: 5px;
+        }
+    }    
+    @include _480 {
+        &__text{
+            display: none;
+        }
+        &__img{
+            width: 80px;
+            height: 80px;
+        }
+    }    
+}
+

@@ -1,6 +1,6 @@
 @import './scss/mixins.scss';
 
-.myContainer{
+.start{
     @include container();
     flex-direction: row;
     padding: 0 30px;
@@ -18,37 +18,39 @@
             width: 100%;
         }
         padding: 0 5px;
-     }    
-}
-.btnGroup{
-    min-width: 150px;
-    height: 55px;
-    display: flex;
-}
-.btn{
-    width: 180px;
-    height: 100%;
-    margin: 0 5px;
-    @include center();
-    @include text(#fff, 20px, 500);
-    border: none;
-    border-radius: 10px;
-    background-color: #5DB75E;
-    &_login{
-        background-color: #5DB75E;
-        color: #fff;
     }
-    &_register{
-        background-color: #FFB400;
-    }
-    @include _480 {
-       width: 120px;
-       height: 40px;
+    &__btnGroup{
+        min-width: 150px;
+        height: min-content;
+        margin-top: 50px;
+        display: flex;
+        align-items: center;
     }    
-}
-.img{
-    width: 600px;
-    height: 500px;
-    background-image: url(../../public/icon/entryPageImg.png);
-    background-size: cover;
+    &__btn{
+        width: 180px;
+        height: 50px;
+        margin: 0 5px;
+        @include center();
+        @include text(#fff, 20px, 500);
+        border: none;
+        border-radius: 10px;
+        background-color: #5DB75E;
+        &_login{
+            background-color: #5DB75E;
+            color: #fff;
+        }
+        &_register{
+            background-color: #FFB400;
+        }
+        @include _480 {
+           width: 130px;
+           height: 50px;
+        }    
+    }
+    &__img{
+        width: 600px;
+        height: 500px;
+        background-image: url(../../public/icon/entryPageImg.png);
+        background-size: cover;
+    }
 }

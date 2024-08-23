@@ -7,6 +7,8 @@ import { useRouter } from 'next/navigation';
 import { serverUrlStore } from '../../store/serverUrl';
 import { userStore } from '../../store/user';
 import { fullUser } from '../../types/index';
+import Header from '../components/Header/Header';
+import Pagination from '../components/Pagination/Pagination';
 
 const Main = () => { 
 
@@ -40,14 +42,28 @@ const Main = () => {
     if(serverUrl !== 'server' && session.data?.user !== undefined){
       getDbUser();
     }
+    
   }, [session.status, router, serverUrl]);
+
+
+  useEffect(()=>{
+    console.log(user)
+  },[user])
 
   if (session.status === 'loading') {
     return <p>Loading... </p>;
   }
 
   return (
-    <div onClick={()=> {signOut()}}>{user.name} {user.email} {user._id}</div>
+    <div className='main'>
+      <Header/>
+      <div className='main__line'></div>
+      <div className='main__row'>
+        <div className='main__btn'>Add Car</div>
+        <input name='findCarInp' type="text" className='main__input' placeholder='Find Car' />
+      </div>
+      <Pagination/>
+    </div>
   )
 }
 
