@@ -13,5 +13,10 @@
   background-image: url('../../public/background/background.png');
   background-size: cover;
   background-position:50%;
+  @include _979 {
+    &{
+      height: min-content;
+    }
+ }    
 }
 

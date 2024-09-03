@@ -6,7 +6,7 @@ export interface fullUser {
     profileImg: String,
     cars: Car[],
     _id: String,
-    __v: number
+    __v: Number
 }
 
 export interface Car {
