@@ -18,7 +18,7 @@ export default function Home() {
   }, [session.status, router]);
 
   if (session.status === 'loading') {
-    return <p>Loading.... </p>;
+    return <p>Loading... </p>;
   }
 
   return (
