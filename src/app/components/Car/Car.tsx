@@ -29,5 +29,4 @@ const Car = () => {
     </div>
   )
 }
-
 export default Car
