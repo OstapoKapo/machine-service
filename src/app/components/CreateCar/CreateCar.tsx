@@ -41,7 +41,7 @@ const CreateCar = () => {
   }
 
   const checkLastChange = (date: string) => {
-
+      const newDate = new Date();
   }
 
   const createHistory = () => {
