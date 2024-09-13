@@ -4,15 +4,9 @@ import './register.scss';
 import axios from 'axios';
 import { serverUrlStore } from '../../store/serverUrl';
 import { useRouter } from 'next/navigation';
-import { fullUser } from '../../types/index';
+import { fullUser } from '../../types';
 
-type RegUser = {
-  name: string,
-  email: string,
-  password: string,
-  profileImg: string,
-  cars: Array<any>
-}
+
 const Register = () => {
    
   const {serverUrl, setServerUrl} = serverUrlStore();
@@ -29,27 +23,32 @@ const Register = () => {
     e.preventDefault();
 
     const form = e.currentTarget;
-    
     const name = (form.elements.namedItem('nameInp') as HTMLInputElement).value.toLowerCase();
     const email = (form.elements.namedItem('emailInp') as HTMLInputElement).value.toLowerCase();
     const password = (form.elements.namedItem('passwordInp') as HTMLInputElement).value.toLowerCase();
-    const user: RegUser = {
-      name: name,
-      email: email,
-      password: password,
-      cars: [],
-      profileImg: '' 
-    };
 
     (e.target as HTMLFormElement).reset();
-    try{
-      createUser(user);
-    }catch(err){
-      console.log(`You have error ---- ${err}`)
+
+    if(name.length > 2 && email.length > 2 && password.length > 2){
+      const user: fullUser = {
+        name: name,
+        email: email,
+        password: password,
+        cars: [],
+        profileImg: ''
+      };
+
+      try{
+      await createUser(user);
+      }catch(err){
+        console.log(`You have error ---- ${err}`)
+      }
+    }else{
+      alert('Please fill all inputs')
     }
   }
 
-  const createUser = async (user: RegUser) => {
+  const createUser = async (user: fullUser) => {
     await axios.post(`${serverUrl}/signIn`, {user})
     .then((response) => {
     if(response.status === 200){

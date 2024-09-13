@@ -6,7 +6,7 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { serverUrlStore } from '../../store/serverUrl';
 import { userStore } from '../../store/user';
-import { fullUser } from '../../types/index';
+import { fullUser } from '../../types';
 import Header from '../components/Header/Header';
 import Car from '../components/Car/Car';
 import Pagination from '../components/Pagination/Pagination';
@@ -47,11 +47,6 @@ const Main = () => {
     }
     
   }, [session.status, router, serverUrl]);
-
-
-  useEffect(()=>{
-    console.log(user)
-  },[user])
 
   if (session.status === 'loading') {
     return <p>Loading... </p>;

@@ -18,9 +18,9 @@ const Login = () => {
     e.preventDefault();
 
     const form = e.currentTarget;
-    
     const email = (form.elements.namedItem('emailInp') as HTMLInputElement).value.toLowerCase();
     const password = (form.elements.namedItem('passwordInp') as HTMLInputElement).value.toLowerCase();
+
     signIn('credentials', {email,password});
 
     (e.target as HTMLFormElement).reset();

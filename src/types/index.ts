@@ -5,22 +5,22 @@ export interface fullUser {
     password: String,
     profileImg: String,
     cars: Car[],
-    _id: String,
-    __v: Number
+    _id?: String,
+    __v?: Number
 }
 
 export interface Car {
     _id?: String,
-    history: History[]        
-    year: Number,
-    model: String,
-    brand: String,
+    name: String,
+    mileage: Number,
+    averageSpeed: Number,
+    history: History[],
     carImg: String,
-    lubricants: {
+    filter: {
         lastChange: String,
         nextChange: String
     },
-    filter: {
+    oil: {
         lastChange: String,
         nextChange: String
     }
