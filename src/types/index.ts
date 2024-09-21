@@ -18,11 +18,17 @@ export interface Car {
     carImg: String,
     filter: {
         lastChange: String,
-        nextChange: String
+        nextChange: {
+            date: String,
+            mileage: Number
+        }
     },
     oil: {
         lastChange: String,
-        nextChange: String
+        nextChange: {
+            date: String,
+            mileage: Number
+        }
     }
 }
 

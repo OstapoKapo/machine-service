@@ -1,8 +1,18 @@
-import React, {FormEvent} from 'react';
+import React, { FormEvent } from 'react';
 import './CreateCar.scss';
 import { Car, History } from '../../../types'
+import axios from "axios";
+import {serverUrlStore} from "../../../store/serverUrl";
+import {userStore} from "../../../store/user";
 
-const CreateCar = () => {
+interface CreateCar {
+    setAddCarKey: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const CreateCar: React.FC<CreateCar> = ({setAddCarKey}) => {
+
+  const {serverUrl} = serverUrlStore();
+  const {user} = userStore();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
@@ -16,39 +26,52 @@ const CreateCar = () => {
 
       if(name.length > 0 && mileage.length > 0 && average.length > 0 && filterData.length > 0 && oilData.length > 0) {
           if(!isNaN(Number(average)) && !isNaN(Number(mileage))){
-              const car: Car = {
-                  name: name,
-                  mileage: Number(mileage),
-                  averageSpeed: Number(average),
-                  carImg: '',
-                  history: [createHistory()],
-                  filter: {
-                      lastChange: filterData,
-                      nextChange: ''
-                  },
-                  oil: {
-                      lastChange: oilData,
-                      nextChange: ''
-                  }
+              if(checkLastChange(filterData) && checkLastChange(oilData)){
+                  const car: Car = {
+                      name: name,
+                      mileage: Number(mileage),
+                      averageSpeed: Number(average),
+                      carImg: '',
+                      history: [createHistory()],
+                      filter: {
+                          lastChange: filterData,
+                          nextChange: {
+                              date: '14-08-2024',
+                              mileage: 1488
+                          }
+                      },
+                      oil: {
+                          lastChange: oilData,
+                          nextChange: {
+                              date: '14-08-2024',
+                              mileage: 1488
+                          }
+                      }
+                  };
+                  createCar(car);
+                  (e.target as HTMLFormElement).reset();
+              }else{
+                  alert('You write wrong data');
               }
-              console.log(car)
           }else{
-              alert('average or mileage should be number')
+              alert('average or mileage should be numbered');
           }
       }else{
           alert('Please fill all inputs');
       }
   }
 
-  const checkLastChange = (date: string) => {
-      const newDate = new Date();
+  const checkLastChange = (date: string): boolean => {
+      const newDate = Date.now();
+      const convertedDate = new Date(date).getTime()
+      return convertedDate < newDate;
   }
 
   const createHistory = () => {
       const date = new Date();
-      const day = String(date.getDate()).padStart(2, '0'); // Get day and ensure two digits
-      const month = String(date.getMonth() + 1).padStart(2, '0'); // Get month (0-indexed) and ensure two digits
-      const year = date.getFullYear(); // Get full year
+      const day = String(date.getDate()).padStart(2, '0');
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const year = date.getFullYear();
 
       const formattedDate = `${day}.${month}.${year}`;
       const description = 'Car was created';
@@ -56,6 +79,7 @@ const CreateCar = () => {
           description: description,
           date: formattedDate
       }
+
       return history;
   }
 
@@ -63,7 +87,14 @@ const CreateCar = () => {
 
   }
 
-  const createCar = async () => {
+  const createCar = async (car: Car) => {
+      const userEmail = user.email;
+      await axios.post(`${serverUrl}/createCar`, {car, userEmail})
+          .then((response) => {
+              if(response.status === 200){
+                  setAddCarKey(false)
+              }
+          })
 
   }
 

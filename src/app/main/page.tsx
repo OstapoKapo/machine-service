@@ -6,9 +6,8 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { serverUrlStore } from '../../store/serverUrl';
 import { userStore } from '../../store/user';
-import { fullUser } from '../../types';
 import Header from '../components/Header/Header';
-import Car from '../components/Car/Car';
+import CarBlock from '../components/Car/CarBlock';
 import Pagination from '../components/Pagination/Pagination';
 import CreateCar from '../components/CreateCar/CreateCar';
 
@@ -18,6 +17,7 @@ const Main = () => {
   const router = useRouter();
 
   const [addCarKey, setAddCarKey] = useState<boolean>(false);
+  const [carNumber, setCarNumber] = useState<number>(0);
   const {user, updateUser} = userStore();
   const {serverUrl, setServerUrl} = serverUrlStore();
 
@@ -65,10 +65,10 @@ const Main = () => {
             </div>
           </div>
         </div>
-        <input name='findCarInp' type="text" className='main__input' placeholder='Find Car' />
+        <input name='findCarInp' type="text" className='main__input' placeholder='Find CarBlock' />
       </div>
-      {addCarKey ? <CreateCar/> : <Car/>}
-      <Pagination/>
+      {user.name.length > 0 ? addCarKey ? <CreateCar setAddCarKey={ setAddCarKey }/> : <CarBlock carNumber={carNumber}/> : ''}
+      <Pagination carNumber={carNumber} setCarNumber={setCarNumber} />
     </div>
   )
 }
